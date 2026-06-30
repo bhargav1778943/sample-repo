@@ -4,10 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Practice Page</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hello, Git practice!</h1>
-  <p>This is my first HTML practice file in the repo.</p>
-  <p>Change made and committed by GitHub Copilot.</p>
+  <div class="container">
+    <h1>Hello, Git practice!</h1>
+    <p class="trackable">This is my first HTML practice file in the repo.</p>
+    <p class="trackable">Change made and committed by GitHub Copilot.</p>
+    <div class="tracker">
+      <h2>Activity Tracker</h2>
+      <p id="viewCount">Page views: 0</p>
+      <p id="clickCount">Tracked clicks: 0</p>
+      <button id="trackButton">Click to track</button>
+    </div>
+  </div>
+
+  <script>
+    const viewCount = document.getElementById('viewCount');
+    const clickCount = document.getElementById('clickCount');
+    const trackButton = document.getElementById('trackButton');
+
+    let views = 0;
+    let clicks = 0;
+
+    function updateTracker() {
+      viewCount.textContent = `Page views: ${views}`;
+      clickCount.textContent = `Tracked clicks: ${clicks}`;
+    }
+
+    window.addEventListener('load', () => {
+      views += 1;
+      updateTracker();
+    });
+
+    trackButton.addEventListener('click', () => {
+      clicks += 1;
+      updateTracker();
+    });
+
+    document.querySelectorAll('.trackable').forEach(element => {
+      element.addEventListener('click', () => {
+        clicks += 1;
+        updateTracker();
+      });
+    });
+  </script>
 </body>
 </html>
